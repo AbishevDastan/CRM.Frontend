@@ -1,0 +1,36 @@
+.navbar {
+    height: 50px;
+    background-color: white;
+  }
+  
+  .navbar-brand {
+    margin-left: 10%;
+  }
+  
+  .navbar-nav {
+    margin-right: 10%;
+  }
+  
+  .nav-item {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .nav-item a {
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5%;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav-item a:hover {
+    background-color: rgb(239, 239, 239);
+    opacity: 1;
+  }
+  
+  .nav-item.active a {
+    opacity: 1;
+    font-weight: 400;
+  }
