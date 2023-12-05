@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { TaskItemService } from 'src/app/services/task-item.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,12 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class HomeComponent {
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService, private taskItemService: TaskItemService) {}
 
   searchText: string = '';
+
+  employeeTasksCount?: number;
+
   employees: Array<Employee> = [];
   addEmployee: Employee = {
     fullName: "",
@@ -29,9 +33,13 @@ export class HomeComponent {
 
   selectedEmployeeId?: number;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getEmployees();
-  }
+
+    // employees.forEach(employee => {
+    //   this.employeeTasksCount = this.getTasksCountForEmployee(employee);
+    // }); 
+    }
 
   getEmployees() {
     this.employeeService.getEmployees().subscribe((data) => {
@@ -102,5 +110,19 @@ export class HomeComponent {
       } else {
         this.getEmployees();
       }
+    }
+
+    getEmployeeTasksCount(employeeId: any): number {
+      let tasksCount = 5;
+      console.log("hi")
+      // this.taskItemService.getEmployeeTasksCount(employeeId)
+      // .subscribe(count => {
+      //   console.log("in ts file")
+      //     tasksCount = count
+      //   }
+      //     ,
+      //   error => console.error('Error fetching tasks count', error)
+      // );
+      return tasksCount;
     }
   }

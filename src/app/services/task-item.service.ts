@@ -7,7 +7,7 @@ import { TaskItem } from '../models/task-item';
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService {
+export class TaskItemService {
 
   private url = "TaskItem";
 
@@ -19,6 +19,10 @@ export class TaskService {
 
   getTaskItemsByEmployeeId () : Observable<Array<TaskItem>> {
     return this.http.get<Array<TaskItem>>(`${environment.apiUrl}/${this.url}/task-items-by-employee-id`);
+  }
+
+  getEmployeeTasksCount(employeeId?: number) : Observable<number> {
+    return this.http.get<number>(`${environment.apiUrl}/${this.url}/${employeeId}/count`);
   }
 
   getTaskItem () : Observable<TaskItem> {

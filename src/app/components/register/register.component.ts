@@ -19,11 +19,11 @@ export class RegisterComponent {
 
   constructor(private adminService: AdminService, private router: Router) { }
 
-  ngOnInit(): void {
-    if (this.adminService.isAuthenticated()) {
-      this.router.navigate(['/']).then();
-    }
-  }
+  // ngOnInit(): void {
+  //   if (this.adminService.isAuthenticated()) {
+  //     this.router.navigate(['/']).then();
+  //   }
+  // }
 
   createAccount() {
     this.successMessage = '';
