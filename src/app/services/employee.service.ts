@@ -21,6 +21,10 @@ export class EmployeeService {
     return this.http.get<Employee>(`${environment.apiUrl}/${this.url}`);
   }
 
+  searchEmployees(searchText: string) : Observable<Array<Employee>> {
+    return this.http.get<Array<Employee>>(`${environment.apiUrl}/${this.url}/${searchText}/search`);
+  }
+
   addEmployee(employee: Employee): Observable<Employee> {
     return this.http.post<Employee>(`${environment.apiUrl}/${this.url}`, employee);
   }

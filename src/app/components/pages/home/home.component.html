@@ -3,9 +3,12 @@
       <div class="title-container">
         <h1>Сотрудники</h1>
       </div>
+      <div class="container">
       <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#add-employee-modal">
         Добавить сотрудника
       </button>
+      <input type="text" [(ngModel)]="searchText" placeholder="Поиск по ФИО..." (input)="searchEmployees()"/>
+    </div>
     <table class="table table-bordered table-hover">
         <thead>
           <tr>
@@ -18,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees">
+            <tr *ngFor="let employee of employees">
             <td>{{ employee.id }}</td>
             <td>{{ employee.fullName }}</td>
             <td>{{ employee.position }}</td>
@@ -37,8 +40,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    </div>
 
     <div class="modal fade" id="add-employee-modal" tabindex="-1" aria-labelledby="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -110,5 +111,8 @@
             <p>Вы уверены, что хотите удалить сотрудника?</p>
             <div style="margin-top: 2%; text-align: center;">
             <button type="submit" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="deleteEmployee(selectedEmployeeId)">Да, удалить сотрудника</button>
+            </div>
+        </div>
       </div>
     </div>
+  </div>

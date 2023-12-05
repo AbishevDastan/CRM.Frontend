@@ -1,0 +1,25 @@
+  <div class="page-container">
+    <div class="container">
+            <div class="form-title">
+            <h2>Регистрация</h2>
+        </div>
+        <form>
+            <div class="mb-3">
+              <label for="newEmail" class="form-label">Адрес эл. почты</label>
+              <input type="email" class="form-control" id="newEmail" name="newEmail" placeholder="Введите свой адрес эл. почты" [(ngModel)]="newEmail">
+            </div>
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">Пароль</label>
+              <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Введите пароль" [(ngModel)]="newPassword">
+            </div>
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">Пароль</label>
+              <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Подтвердите пароль" [(ngModel)]="confirmNewPassword">
+            </div>
+              <div class="button-container">
+              <button type="submit" class="btn btn-outline-dark" (click)="createAccount()" [disabled]="!newEmail || !newPassword || !confirmNewPassword">Создать аккаунт</button>
+              <a (click)="goToLogin()"><p>У меня уже есть учётная запись</p></a>
+            </div>
+            </form>
+          </div>
+        </div>

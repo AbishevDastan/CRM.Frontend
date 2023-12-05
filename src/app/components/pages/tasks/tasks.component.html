@@ -1,1 +1,107 @@
-<p>tasks works!</p>
+<!-- <div class="page-container">
+    <div class="tasks-table-container">
+      <div class="title-container">
+        <h1>Сотрудники</h1>
+      </div>
+      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#add-task-modal">
+        Добавить задачу
+      </button>
+    <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Наименование</th>
+            <th>Дата старта</th>
+            <th>Дата завершения</th>
+            <th>Процент выполнения</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let taskItem of taskItems">
+            <td>{{ taskItem.id }}</td>
+            <td>{{ taskItem.title }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="text-align: center;">
+              <button class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#update-task-modal" (click)="passTaskItemToUpdate(taskItem)">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+            <td style="text-align: center;">
+              <button class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#delete-task-modal" (click)="passTaskItemIdToDelete(taskItem.id)">
+            <i class="bi bi-trash3-fill"></i>
+          </button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    <div class="modal fade" id="add-task-modal" tabindex="-1" aria-labelledby="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Добавить задачу</h5>
+            <button type="button" data-bs-dismiss="modal">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="onAddEmployeeSubmit()">
+              <div class="mb-3">
+                <label for="title" class="form-label">Наименование</label>
+                <input [(ngModel)]="addTaskItem.title" type="text" name ="title" class="form-control" id="title" placeholder="Введите наименование задачи" required>
+              </div>
+              <div class="button-container">
+                <button type="submit" class="btn btn-outline-dark" data-bs-dismiss="modal">Добавить задачу</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="update-task-modal" tabindex="-1" aria-labelledby="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Обновить информацию по задаче</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="onUpdateTaskItemSubmit()">
+              <input type="hidden" [(ngModel)]="updateTaskItem.id" name="updateId">
+              <div class="mb-3">
+                <label for="title" class="form-label">ФИО</label>
+                <input [(ngModel)]="updatedTaskItemTitle" type="text" name ="title" class="form-control" id="title" placeholder="Введите наименование задачи" required>
+              </div>
+              <div class="button-container">
+                <button type="submit" class="btn btn-outline-dark" data-bs-dismiss="modal">Сохранить</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="delete-task-modal" tabindex="-1" aria-labelledby="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Удалить задачу</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <div class="modal-body" style="text-align: center;">            
+            <p>Вы уверены, что хотите удалить задачу?</p>
+            <div style="margin-top: 2%; text-align: center;">
+            <button type="submit" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="deleteTaskItem(selectedTaskItemId)">Да, удалить задачу</button>
+      </div>
+    </div> -->

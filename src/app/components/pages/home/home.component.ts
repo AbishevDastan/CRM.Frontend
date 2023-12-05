@@ -11,6 +11,7 @@ export class HomeComponent {
 
   constructor(private employeeService: EmployeeService) {}
 
+  searchText: string = '';
   employees: Array<Employee> = [];
   addEmployee: Employee = {
     fullName: "",
@@ -90,5 +91,16 @@ export class HomeComponent {
           console.error('Error deleting employee:', error);
         }
       );
+    }
+
+    searchEmployees() {
+      if (this.searchText) {
+        this.employeeService.searchEmployees(this.searchText)
+          .subscribe((result: Employee[]) => {
+            this.employees = result;
+          });
+      } else {
+        this.getEmployees();
+      }
     }
   }

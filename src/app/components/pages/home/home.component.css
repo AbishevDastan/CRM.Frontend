@@ -2,6 +2,23 @@
     text-align: center;
 }
 
+.title-container h1 {
+    margin-bottom: 1%;
+}
+
+.container input {
+    margin-left: 65%;
+    margin-bottom: 4%;
+    font-size: 16px;
+    height: 37px;
+    width: 210px;
+    border-radius: 7px;
+}
+
+input::placeholder {
+    padding: 10px; 
+}
+
 .employees-table-container {
     background-color: white;
     margin-left: 10%;
