@@ -1,25 +1,24 @@
-// import { Component, Input } from '@angular/core';
-// import { Employee } from 'src/app/models/employee';
-// import { TaskItem } from 'src/app/models/task-item';
-// import { TaskService } from 'src/app/services/task-item.service';
+import { Component, Input } from '@angular/core';
+import { Employee } from 'src/app/models/employee/employee';
+import { TaskItem } from 'src/app/models/task-item';
+import { TaskItemService } from 'src/app/services/task-item.service';
 
-// @Component({
-//   selector: 'app-tasks',
-//   templateUrl: './tasks.component.html',
-//   styleUrls: ['./tasks.component.css']
-// })
-// export class TasksComponent {
+@Component({
+  selector: 'app-tasks',
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.css']
+})
+export class TasksComponent {
 
-//  // @Input() employee : Employee; -task component
-//   constructor(private taskItemService: TaskService) {}
+  constructor(private taskItemService: TaskItemService) {}
 
-//   taskItems: Array<TaskItem> = [];
+  taskItems: Array<TaskItem> = [];
 
 //   addTaskItem: TaskItem = {
 //     title: "",
 //     description: "",
-//     startDate: Date,
-//     deadLine: Date,
+//     // startDate: Date,
+//     // deadLine: Date,
 //     completionPercentage: number,
 //     employeeId: number
 //   };
@@ -27,27 +26,29 @@
 //     id: 0,
 //     title: "",
 //     description: "",
-//     startDate: Date,
-//     deadLine: Date,
+//     // startDate: Date,
+//     // deadLine: Date,
 //     completionPercentage: number,
 //     employeeId: number
 //   };
 
-//   updatedTaskItemId?: number;
-//   updatedTaskItemTitle: string = "";
 
-//   selectedTaskItemId?: number;
 
-//   ngOnInit(): void {
-//     this.getTaskItemsByEmployeeId();
-//   }
+  updatedTaskItemId?: number;
+  updatedTaskItemTitle: string = "";
 
-//   getTaskItemsByEmployeeId(employeeId?: number) {
-//     this.taskItemService.getTaskItemsByEmployeeId().subscribe((data) => {
-//     console.log(data);
-//     this.taskItems = data;
-//   });
-//   }
+  selectedTaskItemId?: number;
+
+  ngOnInit(): void {
+    this.getTaskItemsByEmployeeId();
+  }
+
+  getTaskItemsByEmployeeId(employeeId?: number) {
+    this.taskItemService.getTaskItemsByEmployeeId().subscribe((data) => {
+    console.log(data);
+    this.taskItems = data;
+  });
+  }
 
 //   onAddEmployeeSubmit() {
 //     this.taskItemService.addTaskItem(this.addTaskItem).subscribe(
@@ -84,19 +85,19 @@
 //     );
 //   }
 
-//   passTaskItemIdToDelete(taskItemId?: number ){
-//     this.selectedTaskItemId = taskItemId;
-//   }
+  passTaskItemIdToDelete(taskItemId?: number ){
+    this.selectedTaskItemId = taskItemId;
+  }
 
-//   deleteTaskItem(taskItemId?: number) {
-//       this.taskItemService.deleteTaskItem(this.selectedTaskItemId).subscribe(
-//         () => {
-//           console.log('Task deleted successfully.');
-//           this.getTaskItemsByEmployeeId(); 
-//         },
-//         (error) => {
-//           console.error('Error deleting task:', error);
-//         }
-//       );
-//     }
-//   }
+  deleteTaskItem(taskItemId?: number) {
+      this.taskItemService.deleteTaskItem(this.selectedTaskItemId).subscribe(
+        () => {
+          console.log('Task deleted successfully.');
+          this.getTaskItemsByEmployeeId(); 
+        },
+        (error) => {
+          console.error('Error deleting task:', error);
+        }
+      );
+    }
+  }

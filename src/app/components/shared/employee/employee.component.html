@@ -1,0 +1,64 @@
+<div style="display: flex; flex-direction: row;">
+    <p>{{ employee?.id }}</p>
+    <p>{{ employee?.fullName }}</p>
+    <p>{{ employee?.position }}</p>
+    <button class="btn btn-lg" data-bs-toggle="modal" attr.data-bs-target="#update-employee-modal{{employee?.id}}">
+        <i class="bi bi-pencil"></i>
+    </button>
+    <button class="btn btn-lg" data-bs-toggle="modal" attr.data-bs-target="#delete-employee-modal{{employee?.id}}">
+        <i class="bi bi-trash3-fill"></i>
+    </button>
+</div>
+
+<div class="modal fade" id="update-employee-modal{{employee?.id}}" tabindex="-1" aria-labelledby="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Обновить данные сотрудника</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="employee">
+           <form (ngSubmit)="onUpdateEmployeeSubmit()">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">ФИО</label>
+              <input [(ngModel)]="employee.fullName" type="text" name ="fullName" class="form-control" id="fullName" placeholder="Введите ФИО сотрудника" required>
+            </div>
+            <div class="mb-3">
+              <label for="position" class="form-label">Должность</label>
+              <input [(ngModel)]="employee.position" type="text" name ="position" class="form-control" id="position" placeholder="Введите должность сотрудника" required>
+            </div>
+            <div class="button-container">
+              <button type="submit" class="btn btn-outline-dark" data-bs-dismiss="modal">Сохранить</button>
+            </div>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade" id="delete-employee-modal{{employee?.id}}" tabindex="-1" aria-labelledby="dialog" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Удалить сотрудника</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align: center;">  
+            <div *ngIf="employee">          
+                <p>Вы уверены, что хотите удалить сотрудника?</p>
+                <div style="margin-top: 2%; text-align: center;">
+                    <button type="submit" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="deleteEmployee()">
+                        Да, удалить сотрудника
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div> 
+</div>

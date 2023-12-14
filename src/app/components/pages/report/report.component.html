@@ -1,1 +1,33 @@
-<p>report works!</p>
+<div class="page-container">
+    <div class="overdue-task-items-table-container">
+      <div class="title-container">
+        <h1>Просроченные задачи</h1>
+      </div>
+      <div class="container">
+      <button type="button" class="btn btn-outline-dark">
+        Печать
+      </button>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Сотрудник</th>
+            <th>Наименование</th>
+            <th>Дата старта</th>
+            <th>Дата завершения</th>
+            <th>% выполнения</th>
+            <th>Просрочено дней</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let overdueTaskItem of overdueTaskItems">
+            <td>{{ overdueTaskItem.id }}</td>
+            <td>{{ employee?.fullName }}</td>
+            <td>{{ overdueTaskItem.title }}</td>
+            <td>{{ overdueTaskItem.startDate }}</td>
+            <td>{{ utcDate }}</td>
+            <!-- <td>{{ overdueTaskItem.deadLine - utcDate }}</td> -->
+          </tr>
+        </tbody>
+      </table>

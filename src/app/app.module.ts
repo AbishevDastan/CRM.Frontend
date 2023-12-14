@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeComponent } from './components/shared/employee/employee.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,6 +41,7 @@ const AUTHENTICATION_INTERCEPTOR = {
     ReportComponent,
     HeaderComponent,
     RegisterComponent,
+    EmployeeComponent,
     ],
   imports: [
     BrowserModule,

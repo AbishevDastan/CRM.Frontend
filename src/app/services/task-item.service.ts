@@ -25,6 +25,10 @@ export class TaskItemService {
     return this.http.get<number>(`${environment.apiUrl}/${this.url}/${employeeId}/count`);
   }
 
+  getOverdueTaskItems() : Observable<Array<TaskItem>> {
+    return this.http.get<Array<TaskItem>>(`${environment.apiUrl}/${this.url}/overdue-task-items`);
+  }
+
   getTaskItem () : Observable<TaskItem> {
     return this.http.get<TaskItem>(`${environment.apiUrl}/${this.url}`);
   }
