@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { UpdateEmployeeDto } from 'src/app/models/employee/update-employee-dto';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -9,7 +10,8 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class EmployeeComponent {
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,
+    private router: Router) { }
 
   @Input() employee?: { id: number; fullName: string; position: string; };
 
@@ -22,6 +24,12 @@ export class EmployeeComponent {
       console.log(data);
       this.employee = data;
     })
+  }
+
+  navigateToEmployeeTasks(): void {
+    if (this.employee) {
+      this.router.navigate(['/employee-tasks', this.employee.id]);
+    }
   }
 
   onUpdateEmployeeSubmit(): void {

@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { TaskItem } from '../models/task-item';
+import { TaskItem } from '../models/task-item/task-item';
+import { AddTaskItem } from '../models/task-item/add-task-item';
+import { UpdateTaskItem } from '../models/task-item/update-task-item';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +19,8 @@ export class TaskItemService {
     return this.http.get<Array<TaskItem>>(`${environment.apiUrl}/${this.url}/task-items`);
   }
 
-  getTaskItemsByEmployeeId () : Observable<Array<TaskItem>> {
-    return this.http.get<Array<TaskItem>>(`${environment.apiUrl}/${this.url}/task-items-by-employee-id`);
+  getTaskItemsByEmployeeId (employeeId?: number) : Observable<Array<TaskItem>> {
+    return this.http.get<Array<TaskItem>>(`${environment.apiUrl}/${this.url}/${employeeId}/task-items-by-employee-id`);
   }
 
   getEmployeeTasksCount(employeeId?: number) : Observable<number> {
@@ -29,16 +31,16 @@ export class TaskItemService {
     return this.http.get<Array<TaskItem>>(`${environment.apiUrl}/${this.url}/overdue-task-items`);
   }
 
-  getTaskItem () : Observable<TaskItem> {
-    return this.http.get<TaskItem>(`${environment.apiUrl}/${this.url}`);
+  getTaskItem (id?: number) : Observable<TaskItem> {
+    return this.http.get<TaskItem>(`${environment.apiUrl}/${this.url}/${id}`);
   }
 
-  addTaskItem(taskItem: TaskItem): Observable<TaskItem> {
-    return this.http.post<TaskItem>(`${environment.apiUrl}/${this.url}`, taskItem);
+  addTaskItem(addTaskItem: AddTaskItem): Observable<TaskItem> {
+    return this.http.post<TaskItem>(`${environment.apiUrl}/${this.url}`, addTaskItem);
   }
 
-  updateTaskItem(taskItem: TaskItem): Observable<TaskItem> {
-    return this.http.put<TaskItem>(`${environment.apiUrl}/${this.url}`, taskItem);
+  updateTaskItem(updateTaskItem: UpdateTaskItem, id: number): Observable<TaskItem> {
+    return this.http.put<TaskItem>(`${environment.apiUrl}/${this.url}/${id}`, updateTaskItem);
   }
 
   deleteTaskItem(taskItemId?: number): Observable<void> {

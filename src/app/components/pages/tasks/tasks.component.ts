@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Employee } from 'src/app/models/employee/employee';
-import { TaskItem } from 'src/app/models/task-item';
+import { TaskItem } from 'src/app/models/task-item/task-item';
 import { TaskItemService } from 'src/app/services/task-item.service';
 
 @Component({
@@ -10,94 +11,48 @@ import { TaskItemService } from 'src/app/services/task-item.service';
 })
 export class TasksComponent {
 
-  constructor(private taskItemService: TaskItemService) {}
+  constructor(private taskItemService: TaskItemService,
+    private route: ActivatedRoute,
+    ) {}
 
-  taskItems: Array<TaskItem> = [];
+  searchText: string = '';
 
-//   addTaskItem: TaskItem = {
-//     title: "",
-//     description: "",
-//     // startDate: Date,
-//     // deadLine: Date,
-//     completionPercentage: number,
-//     employeeId: number
-//   };
-//   updateTaskItem: TaskItem = {
-//     id: 0,
-//     title: "",
-//     description: "",
-//     // startDate: Date,
-//     // deadLine: Date,
-//     completionPercentage: number,
-//     employeeId: number
-//   };
+  taskItems?: Array<TaskItem>;
+  employeeId?: number;
 
-
-
-  updatedTaskItemId?: number;
-  updatedTaskItemTitle: string = "";
-
-  selectedTaskItemId?: number;
+  // addTaskItem: AddTaskItemDto = {
+  //   title: "",
+  //   description: "",
+  //   startDate,
+  //   deadLine,
+  //   completionPercentage,
+  //   userId
+  // };
 
   ngOnInit(): void {
-    this.getTaskItemsByEmployeeId();
+    this.route.params.subscribe(params => {
+      this.employeeId = +params['employeeId'];
+      this.getTaskItemsByEmployeeId();
+    });
   }
 
-  getTaskItemsByEmployeeId(employeeId?: number) {
-    this.taskItemService.getTaskItemsByEmployeeId().subscribe((data) => {
+  getTaskItemsByEmployeeId() {
+    this.taskItemService.getTaskItemsByEmployeeId(this.employeeId).subscribe((data) => {
     console.log(data);
     this.taskItems = data;
   });
   }
 
-//   onAddEmployeeSubmit() {
-//     this.taskItemService.addTaskItem(this.addTaskItem).subscribe(
-//       (data) => {
-//         console.log('Task added successfully:', data);
-//         this.getTaskItemsByEmployeeId();
-//         this.addTaskItem = data;
-//       },
-//       (error) => {
-//         console.error('Error adding task:', error);
-//       }
-//     );
-//   }
-
-//   passTaskItemToUpdate(taskItem: TaskItem ){
-//     this.updatedTaskItemId = taskItem.id;
-//     this.updatedTaskItemTitle = taskItem.title;
-//   }
-
-//   onUpdateTaskItemSubmit() {
-//     this.updateTaskItem = {
-//         id: this.updatedTaskItemId,
-//         title: this.updatedTaskItemTitle
-//     }
-//     this.taskItemService.updateTaskItem(this.updateTaskItem).subscribe(
-//       (data) => {
-//         console.log('Task updated successfully:', data);
-//         this.updateTaskItem = { id: data.id, title: data.title };
-//         this.getTaskItemsByEmployeeId();
-//       },
-//       (error) => {
-//         console.error('Error updating task:', error);
-//       }
-//     );
-//   }
-
-  passTaskItemIdToDelete(taskItemId?: number ){
-    this.selectedTaskItemId = taskItemId;
-  }
-
-  deleteTaskItem(taskItemId?: number) {
-      this.taskItemService.deleteTaskItem(this.selectedTaskItemId).subscribe(
-        () => {
-          console.log('Task deleted successfully.');
-          this.getTaskItemsByEmployeeId(); 
-        },
-        (error) => {
-          console.error('Error deleting task:', error);
-        }
-      );
-    }
+  // onAddEmployeeSubmit() {
+  //   this.taskItemService.addTaskItem(this.addTaskItem).subscribe(
+  //     (data) => {
+  //       console.log('Task added successfully:', data);
+  //       this.getTaskItemsByEmployeeId();
+  //       this.addTaskItem = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error adding task:', error);
+  //     }
+  //   );
+  // }
   }

@@ -17,10 +17,12 @@ import { AuthenticationInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeComponent } from './components/shared/employee/employee.component';
+import { TaskComponent } from './components/shared/task/task.component';
+import { TasksComponent } from './components/pages/tasks/tasks.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  // { path: 'tasks', component: TasksComponent },
+  { path: 'employee-tasks/:employeeId', component: TasksComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'report', component: ReportComponent }
@@ -36,12 +38,13 @@ const AUTHENTICATION_INTERCEPTOR = {
   declarations: [
     AppComponent,
     HomeComponent,
-    // TasksComponent,
+    TasksComponent,
     LoginComponent,
     ReportComponent,
     HeaderComponent,
     RegisterComponent,
     EmployeeComponent,
+    TaskComponent,
     ],
   imports: [
     BrowserModule,

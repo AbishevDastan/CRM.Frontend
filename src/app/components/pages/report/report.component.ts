@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Employee } from 'src/app/models/employee/employee';
-import { TaskItem } from 'src/app/models/task-item';
+import { TaskItem } from 'src/app/models/task-item/task-item';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { TaskItemService } from 'src/app/services/task-item.service';
 
